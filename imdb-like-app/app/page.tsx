@@ -1,33 +1,13 @@
-'use client'
-
-import dynamic from 'next/dynamic'
-// import { useEffect } from 'react'
-// import axios from 'axios'
-// import { getMovies } from '@/redux/slices/moviesSlice'
-// import { useDispatch, useSelector, RootState } from '../redux/store'
-// import { getLoading } from '@/redux/slices/loadingSlice'
 import SideNav from '@/components/sidenav'
+import { getPopularMovies, getTopRatedMovies, getUpcomingMovies } from '@/utils/getMovies'
+import MoviesCarousel from '@/components/MoviesCarousel'
+import SearchInput from '@/components/SearchInput'
 
-// import Image from 'next/image'
+export default async function Home() {
+  const upcomningMovies = await getUpcomingMovies()
+  const topRatedMovies = await getTopRatedMovies()
+  const popularMovies = await getPopularMovies()
 
-const MovieList = dynamic(() => import('@/components/MovieList'), { ssr: false })
-
-export default function Home() {
-//  const dispatch = useDispatch()
-//  const movies = useSelector((state: RootState) => state.movies)
-//  useEffect(() => {
-//   const fetchMovies = async () => {
-//       try {
-//           const response = await axios.get('https://www.omdbapi.com/?apikey=c6d9841&');
-//           const data = response.data;
-//           dispatch(getMovies(data));
-//       } catch (error) {
-//           console.error('Error fetching movies:', error);
-//       }
-//   };
-
-//   fetchMovies();
-// }, [dispatch]);
   return (
    <>
    <div className="flex h-screen flex-col md:flex-row md:overflow-hidden">
@@ -35,7 +15,10 @@ export default function Home() {
      <SideNav />
     </div>
     <div className="flex-grow p-6 md:overflow-y-auto md:p-12">
-     <MovieList />
+     <SearchInput />
+     <MoviesCarousel movies={upcomningMovies} title='Upcoming' />
+     <MoviesCarousel movies={topRatedMovies} title='Top Rated' />
+     <MoviesCarousel movies={popularMovies} title='Popular' />
      </div>
    </div>
    </>
