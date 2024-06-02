@@ -1,4 +1,5 @@
 import type { Config } from 'tailwindcss'
+const plugin = require('tailwindcss/plugin')
 
 const config: Config = {
   content: [
@@ -15,6 +16,22 @@ const config: Config = {
       },
     },
   },
-  plugins: [],
+  plugins: [
+   // plugin(function ({ addUtilities }: { addUtilities: Function }) {
+   //   addUtilities({
+   //     '.scrollbar-hide': {
+   //       '-ms-overflow-style': 'none',
+   //       'scrollbar-width': 'none',
+   //       '&::-webkit-scrollbar': {
+   //         display: 'none'
+   //       }
+   //     }
+   //   }
+   //   )
+   // }),
+   require('flowbite/plugin'),
+   require('tailwind-scrollbar-hide')
+ ],
 }
+
 export default config
