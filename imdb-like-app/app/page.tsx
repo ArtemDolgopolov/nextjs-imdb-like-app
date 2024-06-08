@@ -2,6 +2,7 @@ import SideNav from '@/components/sidenav'
 import { getPopularMovies, getTopRatedMovies, getUpcomingMovies } from '@/utils/getMovies'
 import MoviesCarousel from '@/components/MoviesCarousel'
 import SearchInput from '@/components/SearchInput'
+import CarouselBannerWrapper from '@/components/CarouselBannerWrapper'
 
 export default async function Home() {
   const upcomningMovies = await getUpcomingMovies()
@@ -16,6 +17,7 @@ export default async function Home() {
     </div>
     <div className="flex-grow p-6 md:overflow-y-auto md:p-12">
      <SearchInput />
+     <CarouselBannerWrapper />
      <MoviesCarousel movies={upcomningMovies} title='Upcoming' />
      <MoviesCarousel movies={topRatedMovies} title='Top Rated' />
      <MoviesCarousel movies={popularMovies} title='Popular' />

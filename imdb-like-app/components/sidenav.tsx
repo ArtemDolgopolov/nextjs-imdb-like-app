@@ -32,7 +32,7 @@ export default async function SideNav() {
       <div className="flex grow flex-row justify-between space-x-2 md:flex-col md:space-x-0 md:space-y-2">
         <div className="hidden h-auto w-full grow rounded-md bg-zinc-950 md:flex flex-col">
          {data.genres.map(genre => (
-           <Link className='text-white text-sm pl-3 py-2' key={genre.id} href={`/genre/${genre.id}?genre=${genre.name}`}>
+           <Link className='text-white text-sm pl-3 py-1' key={genre.id} href={`/genre/${genre.id}?genre=${genre.name}`}>
             {genre.name}
            </Link>
          ))}

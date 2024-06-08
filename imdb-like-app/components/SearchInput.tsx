@@ -7,9 +7,9 @@ export default function SearchInput() {
 
  return (
    <>
-       <div className='py-3'>
+       <div className='py-3 relative z-100 flex justify-end'>
         <input
-        className='bg-zinc-900 text-white p-1'
+         className='bg-zinc-900 text-white p-1'
          type='text'
          placeholder='Search movies...'
         />

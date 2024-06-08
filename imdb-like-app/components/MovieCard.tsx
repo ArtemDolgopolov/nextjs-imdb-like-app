@@ -1,7 +1,6 @@
 import { Movie } from "@/utils/types";
 import Image from "next/image";
 import { getImagePath } from "@/utils/getImagePath";
-import clsx from 'clsx'
 
 export default function MovieCard({ movie }: { movie: Movie }) {
   return (
