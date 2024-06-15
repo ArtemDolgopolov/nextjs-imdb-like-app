@@ -1,20 +1,23 @@
-'use client'
-
 import '@/app/globals.css'
 import { Inter } from 'next/font/google'
-import StoreProvider from './StoreProvider'
-import { QueryClient, QueryClientProvider, useQuery } from 'react-query'
+import SideNav from '@/components/sidenav'
+import SearchInput from '@/components/SearchInput'
 const inter = Inter({ subsets: ['latin'] })
-const queryClient = new QueryClient()
  
 export default function Layout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-   <StoreProvider>
     <html lang='en'>
-     <QueryClientProvider client={queryClient}>
-      <body className={inter.className}>{children}</body>
-     </QueryClientProvider>
+     <body className={inter.className}>
+     <div className="flex h-screen flex-col md:flex-row md:overflow-hidden">
+      <div className="w-full flex-none md:w-64">
+       <SideNav />
+      </div>
+      <div className="flex-grow p-6 md:overflow-y-auto md:p-12">
+       <SearchInput />
+       {children}
+      </div>
+      </div>
+      </body>
     </html>
-   </StoreProvider>
   );
 }

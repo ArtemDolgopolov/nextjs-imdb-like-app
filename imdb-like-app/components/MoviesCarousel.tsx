@@ -1,6 +1,6 @@
 import { Movie } from "@/utils/types"
 import MovieCard from "./MovieCard"
-import { cn } from '@/utils/utils'
+import { cn } from '@/lib/utils'
 
 type Props = {
  title?: string;
