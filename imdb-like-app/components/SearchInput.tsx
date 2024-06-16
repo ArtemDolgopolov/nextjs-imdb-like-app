@@ -31,21 +31,21 @@ export default function SearchInput() {
  }
 
  return (
-   <Form {...form}>
-    <form onSubmit={form.handleSubmit(onSubmit)} className='z-60 space-x-2 flex relative z-50 justify-end'>
-     <FormField 
-      control={form.control}
-      name='input'
-      render={({ field }) => (
-       <FormItem>
-        <FormControl>
-         <Input placeholder='Search...' {...field} className='text-white' />
-        </FormControl>
-       </FormItem>
-      )} 
-     />
-     <Button type="submit"><SearchIcon /></Button>
+  <Form {...form}>
+    <form onSubmit={form.handleSubmit(onSubmit)} className='space-x-2 flex relative justify-end'>
+      <FormField 
+        control={form.control}
+        name='input'
+        render={({ field }) => (
+          <FormItem>
+            <FormControl>
+              <Input placeholder='Search...' {...field} className='text-white' />
+            </FormControl>
+          </FormItem>
+        )} 
+      />
+      <Button type="submit"><SearchIcon /></Button>
     </form>
-   </Form>
+  </Form>
  );
 }

@@ -14,9 +14,10 @@ Autoplay.globalOptions = { delay: 8000 }
 
 function CarouselsBanner({ movies }: { movies: Movie[] }) {
  const [emblaRef] = useEmblaCarousel({ loop: true, duration: 100 }, [Autoplay()])
+
   return (
     <div 
-      className='overflow-hidden lg:-mt-40 relative cursor-pointer'
+      className='overflow-hidden relative cursor-pointer mt-4 md:mt-0 lg:-mt-40'
       ref={emblaRef}
     >
      <div className='flex'>
@@ -29,10 +30,9 @@ function CarouselsBanner({ movies }: { movies: Movie[] }) {
          width={1920}
          height={1080}
        />
-       <div className='hidden lg:inline absolute mt-0 top-0 pt-40 xl:pt-52 left-0
-        lg:mt-40 bg-transparent z-20 h-full w-full'>
-        <h2 className='text-5xl font-bold max-w-xl z-50'>{movie.title}</h2>
-        <p className='max-w-xl'>{movie.overview}</p>
+       <div className='absolute top-0 left-0 w-full h-full bg-transparent z-20 flex flex-col justify-center items-start p-4 md:p-10'>
+        <h2 className='text-lg md:text-2xl lg:text-5xl font-bold max-w-xl'>{movie.title}</h2>
+        <p className='hidden md:block max-w-xl'>{movie.overview}</p>
        </div>
       </div>
      ))}
