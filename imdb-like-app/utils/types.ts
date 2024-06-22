@@ -13,20 +13,20 @@ export type Movie = {
  video: boolean;
  vote_average: number;
  vote_count: number;
-}
-
-export type SearchResults = {
+ }
+ 
+ export type SearchResults = {
  page: number;
  results: Movie[];
  total_pages: number;
  total_results: number;
-}
-
-export type Genre = {
+ }
+ 
+ export type Genre = {
  id: number;
  name: string;
-}
-
-export type Genres = {
+ }
+ 
+ export type Genres = {
  genres: Genre[];
-}
+ }
