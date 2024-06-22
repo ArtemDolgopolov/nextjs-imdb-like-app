@@ -32,7 +32,7 @@ export default function SearchInput() {
 
  return (
   <Form {...form}>
-    <form onSubmit={form.handleSubmit(onSubmit)} className='space-x-2 flex relative justify-end'>
+    <form onSubmit={form.handleSubmit(onSubmit)} className='space-x-2 flex relative justify-end md:z-50'>
       <FormField 
         control={form.control}
         name='input'
