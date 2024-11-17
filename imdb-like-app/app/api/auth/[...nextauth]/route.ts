@@ -28,6 +28,10 @@ const handler = NextAuth({
       }
      },
      async authorize(credentials) {
+      if (!credentials || !credentials.username || !credentials.password) {
+       return null;
+      }
+
       const user = {
        id: 1,
        name: 'Artem',
