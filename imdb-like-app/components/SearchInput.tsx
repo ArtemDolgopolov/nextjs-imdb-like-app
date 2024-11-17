@@ -8,6 +8,7 @@ import { Form, FormControl, FormField, FormItem } from '@/components/ui/form'
 import { Button } from '@/components/ui/button'
 import { Input } from './ui/input'
 import SearchIcon from '@/components/SearchIcon'
+import AuthButton from './AuthButton'
 
 const formSchema = z.object({
   input: z.string().min(2).max(50),
@@ -31,8 +32,13 @@ export default function SearchInput() {
  }
 
  return (
-  <Form {...form}>
-    <form onSubmit={form.handleSubmit(onSubmit)} className='space-x-2 flex relative justify-end md:z-50'>
+  <div className='flex flex-col-reverse items-end lg:flex-row lg:justify-between md:gap-y-4 xs:gap-y-4'>
+    <AuthButton />
+      <Form {...form}>
+        <form 
+          onSubmit={form.handleSubmit(onSubmit)} 
+          className='space-x-2 flex relative justify-end md:z-50'
+        >
       <FormField 
         control={form.control}
         name='input'
@@ -40,12 +46,13 @@ export default function SearchInput() {
           <FormItem>
             <FormControl>
               <Input placeholder='Search...' {...field} className='text-white' />
-            </FormControl>
+             </FormControl>
           </FormItem>
         )} 
       />
-      <Button type="submit"><SearchIcon /></Button>
-    </form>
-  </Form>
- );
+          <Button type="submit"><SearchIcon /></Button>
+        </form>
+      </Form>
+     </div>
+   );
 }
