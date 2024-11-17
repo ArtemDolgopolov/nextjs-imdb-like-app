@@ -33,7 +33,7 @@ const handler = NextAuth({
       }
 
       const user = {
-       id: 1,
+       id: '1',
        name: 'Artem',
        password: 'nextauth'
       }
