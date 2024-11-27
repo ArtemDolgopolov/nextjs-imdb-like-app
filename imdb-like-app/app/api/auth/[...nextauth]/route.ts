@@ -2,8 +2,17 @@ import NextAuth from "next-auth"
 import GitHubProvider from "next-auth/providers/github"
 import GoogleProvider from "next-auth/providers/google"
 import CredentialsProvider from 'next-auth/providers/credentials'
+import { compare } from "bcrypt"
+import { sql } from "@vercel/postgres"
 
 const handler = NextAuth({
+  session: {
+   strategy: "jwt"
+  },
+  pages: {
+   signIn: '/login'
+  },
+  secret: process.env.AUTH_SECRET,
   providers: [
     GitHubProvider({
       clientId: process.env.GITHUB_ID!,
@@ -14,35 +23,28 @@ const handler = NextAuth({
       clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
     }),
     CredentialsProvider({
-     name: 'Credentials',
      credentials: {
-      username: {
-       label: 'Username:',
-       type: 'text',
-       placeholder: 'Username'
-      },
-      password: {
-       label: 'Password:',
-       type: 'password',
-       placeholder: 'Password'
-      }
+      email: {},
+      password: {}
      },
      async authorize(credentials) {
-      if (!credentials || !credentials.username || !credentials.password) {
-       return null;
+      const response = await sql`
+       SELECT * FROM users WHERE email=${credentials?.email}
+      `
+      const user = response.rows[0]
+
+      const passwordCorrect = await compare(credentials?.password, user.password)
+
+      console.log({ passwordCorrect })
+
+      if (passwordCorrect) {
+       return {
+        id: user.id,
+        email: user.email
+       }
       }
 
-      const user = {
-       id: '1',
-       name: 'Artem',
-       password: 'nextauth'
-      }
-
-      if (credentials?.username === user.name && credentials?.password === user.password) {
-       return user
-      } else {
-       return null
-      }
+      return null
      }
     })
   ],

@@ -8,7 +8,7 @@ import { Form, FormControl, FormField, FormItem } from '@/components/ui/form'
 import { Button } from '@/components/ui/button'
 import { Input } from './ui/input'
 import SearchIcon from '@/components/SearchIcon'
-import AuthButton from './AuthButton'
+import Logout from './logout'
 
 const formSchema = z.object({
   input: z.string().min(2).max(50),
@@ -33,7 +33,7 @@ export default function SearchInput() {
 
  return (
   <div className='flex flex-col-reverse items-end lg:flex-row lg:justify-between md:gap-y-4 xs:gap-y-4'>
-    <AuthButton />
+    <Logout />
       <Form {...form}>
         <form 
           onSubmit={form.handleSubmit(onSubmit)} 

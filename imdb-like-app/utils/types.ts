@@ -30,3 +30,9 @@ export type Movie = {
  export type Genres = {
  genres: Genre[];
  }
+
+ export type FormDatas = {
+  email?: string;
+  password?: string;
+  general?: string;
+ }
