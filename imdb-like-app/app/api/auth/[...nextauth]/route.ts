@@ -28,10 +28,18 @@ const handler = NextAuth({
       password: {}
      },
      async authorize(credentials) {
+      if (!credentials?.email || !credentials.password) {
+       throw new Error("Email and password are required")
+      }
+
       const response = await sql`
        SELECT * FROM users WHERE email=${credentials?.email}
       `
       const user = response.rows[0]
+
+      if (!user) {
+       throw new Error("User not found")
+      }
 
       const passwordCorrect = await compare(credentials?.password, user.password)
 
@@ -42,9 +50,9 @@ const handler = NextAuth({
         id: user.id,
         email: user.email
        }
+      } else {
+       throw new Error("Invalid credentials");
       }
-
-      return null
      }
     })
   ],
