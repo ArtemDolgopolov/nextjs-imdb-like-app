@@ -19,7 +19,7 @@ export async function POST(request: Request) {
       SELECT * FROM users WHERE email = ${email}
     `
 
-    if (existingUser.rowCount > 0) {
+    if (existingUser?.rowCount > 0) {
       return NextResponse.json(
         { errors: { email: "User with this email already exists" } },
         { status: 400 }
