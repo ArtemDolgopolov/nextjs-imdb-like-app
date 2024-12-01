@@ -17,5 +17,6 @@ export async function getMovieById(id: string): Promise<Movie> {
  }
 
  const data: Movie = await response.json();
+ console.log(data)
  return data;
 }

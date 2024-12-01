@@ -3,6 +3,7 @@ export type Movie = {
  backdrop_path: string;
  genre_ids: number[];
  id: number;
+ origin_country: string[];
  original_language: string;
  original_title: string;
  overview: string;
@@ -13,6 +14,13 @@ export type Movie = {
  video: boolean;
  vote_average: number;
  vote_count: number;
+ spoken_languages: SpokenLanguage[];
+ genres: Genre[];
+ tagline: string;
+ budget: string;
+ revenue: string;
+ runtime: number;
+ production_countries: ProductioCountries[];
  }
  
  export type SearchResults = {
@@ -38,7 +46,15 @@ export type Movie = {
  }
  
  export type Genres = {
- genres: Genre[];
+  genres: Genre[];
+ }
+
+ export type SpokenLanguage = {
+  name: string;
+};
+
+ export type ProductioCountries = {
+  name: string
  }
 
  export type FormDatas = {
