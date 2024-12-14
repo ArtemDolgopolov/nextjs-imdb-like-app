@@ -1,3 +1,4 @@
+import Link from "@/node_modules/next/link";
 import { getMovieById } from "@/utils/getMovieById"
 import { Movie } from "@/utils/types"
 
@@ -9,6 +10,7 @@ type Props = {
 
 export default async function FilmPage({ params }: Props) {
   const movie: Movie = await getMovieById(params.id)
+  console.log(movie.credits.cast)
 
   return (
     <section className="py-8">
@@ -38,6 +40,21 @@ export default async function FilmPage({ params }: Props) {
      <div className="pt-5">
       <span className="text-white">About:</span>
       <p className="text-white text-left">{movie.overview || 'No overview'}</p>
+     </div>
+     <div className="flex-1 h-px bg-white"></div>
+     <div className="pt-5">
+      <span className="text-white">Cast:</span>
+      <div>
+      {movie.credits.cast.slice(0, 6).map((actor) => (
+        <div key={actor.id}>
+          <p className="text-white text-left">{actor.name}</p>
+        </div>
+      ))
+      }
+      </div>
+      <button>
+        <Link href={`/films/${movie.id}/cast`}>{movie.credits.cast.length} actors</Link>
+      </button>
      </div>
     </section>
   );

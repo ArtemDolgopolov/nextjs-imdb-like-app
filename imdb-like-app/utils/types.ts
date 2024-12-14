@@ -21,6 +21,7 @@ export type Movie = {
  revenue: string;
  runtime: number;
  production_countries: ProductioCountries[];
+ credits: Cast;
  }
  
  export type SearchResults = {
@@ -51,10 +52,21 @@ export type Movie = {
 
  export type SpokenLanguage = {
   name: string;
-};
+ };
 
  export type ProductioCountries = {
   name: string
+ }
+
+ export type Cast = {
+  cast: CastMembers[]
+ }
+
+ export type CastMembers = {
+  id: number;
+  name: string;
+  character: string;
+  profile_path: string | null;
  }
 
  export type FormDatas = {

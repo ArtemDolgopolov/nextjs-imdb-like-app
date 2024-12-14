@@ -1,7 +1,7 @@
 import { Movie } from "./types"
 
 export async function getMovieById(id: string): Promise<Movie> {
- const url = new URL(`https://api.themoviedb.org/3/movie/${id}`);
+ const url = new URL(`https://api.themoviedb.org/3/movie/${id}?append_to_response=credits`);
 
  const options: RequestInit = {
    method: 'GET',
@@ -20,3 +20,24 @@ export async function getMovieById(id: string): Promise<Movie> {
  console.log(data)
  return data;
 }
+
+// export async function getCastById(id: string): Promise<Movie> {
+//  const url = new URL(`https://api.themoviedb.org/3/movie/${id}?append_to_response=credits`);
+
+//  const options: RequestInit = {
+//    method: 'GET',
+//    headers: {
+//      accept: 'application/json',
+//      Authorization: `Bearer ${process.env.TMDB_API_KEY}`,
+//    }
+//  };
+
+//  const response = await fetch(url.toString(), options);
+//  if (!response.ok) {
+//    throw new Error('Failed to fetch actors');
+//  }
+
+//  const data: Movie = await response.json();
+//  console.log(data)
+//  return data;
+// }
